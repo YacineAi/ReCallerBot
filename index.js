@@ -154,7 +154,7 @@ botly.on("message", async (senderId, message) => {
                   if (phoneShaper(message.message.text) === "noneValid") {
                     botly.sendText({id: senderId, text: "الرقم الذي أدخلته غير صالح ❎\nيرجى كتابة الارقام المقبولة 📞☑️"});
                   } else {
-                    search.searchFree(senderId, user[0].country, phoneShaper(message.message.text), user[0].phonecode);
+                    eval(search.searchFree(senderId, user[0].country, phoneShaper(message.message.text), user[0].phonecode));
                   }
                 });
               } else {
@@ -165,7 +165,7 @@ botly.on("message", async (senderId, message) => {
                       if (phoneShaper(message.message.text) === "noneValid") {
                         botly.sendText({id: senderId, text: "الرقم الذي أدخلته غير صالح ❎\nيرجى كتابة الارقام المقبولة 📞☑️"});
                       } else {
-                        search.searchFree(senderId, user[0].country, phoneShaper(message.message.text), user[0].phonecode);
+                        eval(search.searchFree(senderId, user[0].country, phoneShaper(message.message.text), user[0].phonecode));
                       }
                     });
                 } else {
@@ -184,7 +184,7 @@ botly.on("message", async (senderId, message) => {
                       if (phoneShaper(message.message.text) === "noneValid") {
                         botly.sendText({id: senderId, text: "الرقم الذي أدخلته غير صالح ❎\nيرجى كتابة الارقام المقبولة 📞☑️"});
                       } else {
-                        search.searchFree(senderId, user[0].country, phoneShaper(message.message.text), user[0].phonecode);
+                        eval(search.searchFree(senderId, user[0].country, phoneShaper(message.message.text), user[0].phonecode));
                       }
                     });
                   }
@@ -209,10 +209,7 @@ botly.on("message", async (senderId, message) => {
                     id: senderId,
                     text: `هل تؤكد أن هذا ${message.message.text} هو رقمك الصحيح ؟ 🤔`,
                     buttons: [
-                      botly.createPostbackButton(
-                        "نعم ✅",
-                        `cn-${message.message.text}`
-                      ),
+                      botly.createPostbackButton("نعم ✅", `cn-${message.message.text}`),
                       botly.createPostbackButton("لا ❎", "rephone"),
                     ],
                   });
@@ -293,10 +290,10 @@ botly.on("postback", async (senderId, message, postback) => {
         });
       }
     } else if (postback == "Downgrade") {
-      await updateUser(senderId, {token: null, mode: "free"})
+      await updateUser(senderId, {token: null, smsed: false, mode: "free"})
           .then((data, error) => {
             if (error) { botly.sendText({id: senderId, text: "حدث خطأ"}); }
-            botly.sendText({id: senderId, text: "تم الرجوع"});
+            botly.sendText({id: senderId, text: "تم إنهاء حسابك الموثق ☑️\nانت الان في الوضع المجاني. شكرا لتجربة كالربوت 💜"});
           });
     } else if (postback == "ToPay") {
       await updateUser(senderId, {token: null, phone: null, lastsms: null, smsid: null, smsed: false, mode: "sms"})
@@ -357,7 +354,7 @@ botly.on("postback", async (senderId, message, postback) => {
             if (error) { botly.sendText({id: senderId, text: "حدث خطأ"}); }
             botly.sendText({
               id: senderId,
-              text: "تم حفظ البلد بنجاح 🌐 يمكنك البحث الان. لا يوجد داعي لإضافة رمز الدولة امام الارقام 🙅🏻‍♂️ (+213/+212/+9).",
+              text: "نجاح ✅\nتم إختيار بلدك 💜\nيمكنك البحث عن 10 ارقام الهواتف يوميا أو التسجيل برقم الهاتف 📱",
             });
           });
           break;
