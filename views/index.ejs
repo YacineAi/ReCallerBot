@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .table-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    th, td {
+      border: 1px dashed #fff;
+      padding: 10px;
+    }
+    
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+    @media screen and (max-width: 480px) {
+      th, td {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+  </style>
+  <title>Server Stats</title>
+</head>
+<body>
+<div class="table-container">
+<table>
+  <thead>
+    <tr>
+      <th>🧠 Memory Metric</th>
+      <th>💾 Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RSS</td>
+      <td><%= formatBytes(memoryUsage.rss) %></td>
+    </tr>
+    <tr>
+      <td>Heap Total</td>
+      <td><%= formatBytes(memoryUsage.heapTotal) %></td>
+    </tr>
+    <tr>
+      <td>Heap Used</td>
+      <td><%= formatBytes(memoryUsage.heapUsed) %></td>
+    </tr>
+    <tr>
+      <td>External</td>
+      <td><%= formatBytes(memoryUsage.external) %></td>
+    </tr>
+    <tr>
+      <td>Server Uptime</td>
+      <td><%= uptimeString %></td>
+    </tr>
+    <tr>
+      <td>Total RAM</td>
+      <td><%= osInfo.totalMemoryMB %> MB</td>
+    </tr>
+    <tr>
+      <td>Available RAM</td>
+      <td><%= osInfo.freeMemoryMB %> MB</td>
+    </tr>
+    <tr>
+      <td>Total CPUs</td>
+      <td><%= osInfo.cpus.length %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>
