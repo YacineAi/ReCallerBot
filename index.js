@@ -248,7 +248,7 @@ botly.on("postback", async (senderId, message, postback) => {
         } else {
           //
          }
-      } else if (postback == "Profile") {
+      } else if (postback == "profile") {
         botly.sendButtons({
           id: senderId,
           text: `البلد الحالي 🌐 : ${user[0].countryflag}`,
