@@ -153,7 +153,7 @@ botly.on("message", async (senderId, message) => {
                   botly.sendGeneric({
                     id: senderId,
                     elements: {
-                      title: `✅ | ${search.data.source2.name}`,
+                      title: `✅ | ${search.data.source1.name}`,
                       image_url: "https://i.ibb.co/StcT5v2/unphoto.jpg",
                       subtitle: `☑️ | ${search.data.source2.name}`,
                       buttons: [
@@ -182,7 +182,7 @@ botly.on("message", async (senderId, message) => {
                   botly.sendGeneric({
                     id: senderId,
                     elements: {
-                      title: `✅ | ${search.data.source2.name}`,
+                      title: `✅ | ${search.data.source1.name}`,
                       image_url: "https://i.ibb.co/StcT5v2/unphoto.jpg",
                       subtitle: `☑️ | ${search.data.source2.name}`,
                       buttons: [
@@ -196,7 +196,7 @@ botly.on("message", async (senderId, message) => {
                  botly.sendGeneric({
                   id: senderId,
                   elements: {
-                    title: `✅ | ${search.data.source2.name}`,
+                    title: `✅ | ${search.data.source1.name}`,
                     image_url: "https://i.ibb.co/StcT5v2/unphoto.jpg",
                     subtitle: `☑️ | ${search.data.source2.name}`,
                     buttons: [
